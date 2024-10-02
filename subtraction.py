@@ -36,23 +36,23 @@ def subtract_large_numbers(num1: str, num2: str) -> str:
         result.append(str(digit1 - digit2))  # Добавляем результат в список
 
     # Удаляем ведущие нули из результата
-    while result and result[-1] == '0':
+    while result and result[-1] == "0":
         result.pop()
 
     if not result:  # Если результат пустой (все нули), то результат 0
-        return '0'
+        return "0"
 
     # Собираем результат в строку и разворачиваем его (так как добавляли цифры с конца)
-    result = ''.join(reversed(result))
+    result = "".join(reversed(result))
 
     if negative:  # Если результат отрицательный, добавляем минус
-        result = '-' + result
+        result = "-" + result
 
     return result
 
 
 # Пример использования
-print(subtract_large_numbers('5', '5'))  # 0
-print(subtract_large_numbers('100', '3'))  # 97
-print(subtract_large_numbers('3', '100'))  # -97
-print(subtract_large_numbers('100000000000001234567', '12345'))  # 100000000000001222222
+print(subtract_large_numbers("5", "5"))  # 0
+print(subtract_large_numbers("100", "3"))  # 97
+print(subtract_large_numbers("3", "100"))  # -97
+print(subtract_large_numbers("100000000000001234567", "12345"))  # 100000000000001222222

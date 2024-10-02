@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
 
@@ -30,33 +30,33 @@ def subtract_large_numbers(num1: str, num2: str) -> str:
 
         result.append(str(digit1 - digit2))
 
-    while result and result[-1] == '0':
+    while result and result[-1] == "0":
         result.pop()
 
     if not result:
-        return '0'
+        return "0"
 
-    result = ''.join(reversed(result))
+    result = "".join(reversed(result))
 
     if negative:
-        result = '-' + result
+        result = "-" + result
 
     return result
 
 
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/subtract', methods=['POST'])
+@app.route("/subtract", methods=["POST"])
 def subtract():
     data = request.get_json()
-    num1 = data['num1']
-    num2 = data['num2']
+    num1 = data["num1"]
+    num2 = data["num2"]
     result = subtract_large_numbers(num1, num2)
-    return jsonify({'result': result})
+    return jsonify({"result": result})
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
